@@ -1,0 +1,33 @@
+// DSCH 2.7f
+// 05-09-2024 02:03:58 PM
+// C:\Users\Vaidik Sharma\Desktop\3 iinput XOR XNOR CPL-3.sch
+
+module 3 iinput XOR XNOR CPL-3( A,C,B,Y,Ybar);
+ input A,C,B;
+ output Y,Ybar;
+ nmos #(1) nmos(w4,A,B); // 3.8u 0.2u
+ nmos #(1) nmos(w4,w5,w6); // 3.8u 0.2u
+ nmos #(1) nmos(w7,A,w6); // 3.8u 0.2u
+ nmos #(1) nmos(w7,w5,B); // 3.8u 0.2u
+ nmos #(1) nmos(Y,w7,w8); // 3.8u 0.2u
+ nmos #(1) nmos(Ybar,w7,C); // 3.8u 0.2u
+ nmos #(1) nmos(Y,w4,C); // 3.8u 0.2u
+ nmos #(1) nmos(Ybar,w4,w8); // 3.8u 0.2u
+ nmos #(1) nmos(w5,vss,A); // 1.0u 0.2u
+ pmos #(1) pmos(w5,vdd,A); // 1.9u 0.2u
+ nmos #(1) nmos(w8,vss,C); // 1.0u 0.2u
+ pmos #(1) pmos(w8,vdd,C); // 1.9u 0.2u
+ pmos #(1) pmos(w6,vdd,B); // 1.9u 0.2u
+ nmos #(1) nmos(w6,vss,B); // 1.0u 0.2u
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#10 A=~A;
+#20 C=~C;
+#40 B=~B;
+
+// Simulation parameters
+// A CLK 10 10
+// C CLK 20 20
+// B CLK 40 40
